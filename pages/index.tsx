@@ -43,6 +43,7 @@ const ListPage: NextPage = () => {
     router.push('/auth/login');
   }
 
+  // 登録されている投稿を取得
   const fetchUpdates = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:8000/snsposts/");
@@ -105,12 +106,14 @@ const ListPage: NextPage = () => {
         <div className="flex flex-col justify-center h-32">
           <h1 className="text-3xl border-b-4 border-gray-300 mx-auto hover:text-gray-300 active:text-black"><a href="/">SNS 投稿一覧</a></h1>
         </div>
-        <div className="flex justify-end items-center text-xl mr-5 flex">
+        <div className="flex justify-end items-center text-xl mr-5">
           <div className="rounded-full bg-gray-200 w-20 h-20 flex items-center justify-center mr-3">
-            <p><a href="#" className="hover:text-white">{loggedInUsername}</a></p>
+            <div className="grid place-items-center h-full">
+              <a href="#" className="hover:text-white overflow-hidden text-center">{loggedInUsername}</a>
+            </div>
           </div>
           <div className="rounded-full bg-gray-200 w-20 h-20 flex items-center justify-center">
-            <p><a href="#" onClick={handleLogoutCookieDelete} className="hover:text-white">ログアウト</a></p>
+            <p><a href="#" onClick={handleLogoutCookieDelete} className="hover:text-white overflow-hidden text-center">ログアウト</a></p>
           </div>
         </div>
       </div>
