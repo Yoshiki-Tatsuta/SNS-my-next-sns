@@ -2,10 +2,12 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loggedInUsername, setLoggedInUsername] = useState('');
@@ -43,21 +45,18 @@ const LoginForm = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     // ログイン成功時の処理
-  //     // ログイン状態を維持し、ルートページにリダイレクト
-  //     // ログイン成功時にのみリダイレクトするため、useEffect内で処理します
-  //     Cookies.set('loggedInUsername', loggedInUsername, { expires: 1, path: '/' }); // ログインユーザ名をCookieに保存
-  //     router.push('/');
-  //   }
-  // }, [isAuthenticated, loggedInUsername, router]);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div>
       <title>SNS ログインフォーム</title>
-      <div className="flex  flex-col items-center justify-center text-3xl h-32">
-        <h1>ログインしましょう</h1>
+      <div className='flex flex-col items-center justify-center h-32'>
+          <h1 className=" text-3xl">ログインしましょう</h1>
+      </div>
+      <div className='flex justify-center'>
+          <p>アカウントがない方は<a href='/auth/signup/' className='border-b-4 border-double border-black hover:text-gray-400'>こちら</a>から作成してください。</p>
       </div>
       <div className="flex flex-col items-center h-screen mt-10">
         <input
@@ -68,13 +67,18 @@ const LoginForm = () => {
           className="w-64 border border-gray-500 rounded"
         />
         <br />
-        <input
-          type="password"
-          placeholder="パスワード"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-64 border border-gray-500 rounded"
-        />
+        <div className="relative">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="パスワード"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-64 border border-gray-500 rounded"
+          />
+          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer" onClick={togglePasswordVisibility}>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </div>
+        </div>
         <br />
         <button 
           type="button" 

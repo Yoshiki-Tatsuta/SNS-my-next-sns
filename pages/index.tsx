@@ -109,11 +109,11 @@ const ListPage: NextPage = () => {
         <div className="flex justify-end items-center text-xl mr-5">
           <div className="rounded-full bg-gray-200 w-20 h-20 flex items-center justify-center mr-3">
             <div className="grid place-items-center h-full">
-              <a href="#" className="hover:text-white overflow-hidden text-center">{loggedInUsername}</a>
+              <a href="" className="hover:text-white overflow-hidden text-center">{loggedInUsername}</a>
             </div>
           </div>
           <div className="rounded-full bg-gray-200 w-20 h-20 flex items-center justify-center">
-            <p><a href="#" onClick={handleLogoutCookieDelete} className="hover:text-white overflow-hidden text-center">ログアウト</a></p>
+            <p><a href="" onClick={handleLogoutCookieDelete} className="hover:text-white overflow-hidden text-center">ログアウト</a></p>
           </div>
         </div>
       </div>

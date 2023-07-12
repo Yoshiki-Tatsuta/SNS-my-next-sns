@@ -37,6 +37,10 @@ const CreatePage = () => {
         router.push('/auth/login');
       }
 
+    const handleCancelButton = () => {
+        router.push('/');
+      };
+
     const handlePostSubmit = async () => {
         try {
             await createPost();
@@ -98,11 +102,19 @@ const CreatePage = () => {
                 <br />
                 <input type="file" onChange={handleImageChange} accept="image/*" />
                 <br />
+            </div>
+            <div className="flex justify-center space-x-4">
                 <button 
                     onClick={handlePostSubmit} 
                     className="w-20 border border-gray-500 bg-gray-200 hover:bg-gray-300 active:bg-gray-200 rounded">投稿する
                 </button>
-                {postError && <p className="text-red-500 mt-5">{postError}</p>}
+                <button 
+                    onClick={handleCancelButton}
+                    className="w-20 border border-gray-500 bg-gray-200 hover:bg-gray-300 active:bg-gray-200 rounded">キャンセル
+                </button>                    
+            </div>
+            <div className="flex  flex-col items-center justify-center">
+              {postError && <p className="text-red-500 mt-5">{postError}</p>}
             </div>
         </div>
     );
